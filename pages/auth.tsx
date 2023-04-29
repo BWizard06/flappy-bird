@@ -1,5 +1,8 @@
 import { useState } from "react";
 import Input from "@/components/Input";
+import { useCallback } from "react";
+import { signIn } from "next-auth/react";
+import axios from "axios";
 
 const Auth = () => {
     const [email, setEmail] = useState("");
@@ -11,6 +14,33 @@ const Auth = () => {
     const changeVariant = () => {
         variant === "login" ? setVariant("register") : setVariant("login")
     }
+
+    const login = useCallback(async () => {
+        try {
+            await signIn("credentials", {
+                email,
+                password,
+                callbackUrl: "/profiles",
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }, [email, password]);
+
+    const register = useCallback(async () => {
+        try {
+            await axios.post("/api/register", {
+                email,
+                name,
+                password,
+            });
+
+            login();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }, [email, name, password, login ]);
 
     return (
         <div className="relative h-full w-full bg-[url('/images/flappy-bird.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
@@ -48,7 +78,10 @@ const Auth = () => {
                                 value={password}
                             />
                         </div>
-                        <button className="bg-green-600 py-3 text-white rounded-md w-full mt-4 hover:bg-green-700 transition">
+                        <button 
+                            onClick={variant === "login" ? login : register}
+                            className="bg-green-600 py-3 text-white rounded-md w-full mt-4 hover:bg-green-700 transition"
+                        >
                             {variant === "login" ? "Login" : "Sign Up"}
                         </button>
                         <p className="text-neutral-500 mt-5">
