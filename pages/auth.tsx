@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Input from "@/components/Input";
 import { useCallback } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import axios from "axios";
 
 const Auth = () => {
@@ -98,6 +98,7 @@ const Auth = () => {
                                     : "Login"}
                             </span>
                         </p>
+                        <button onClick={() => signOut(                                                                     )}>log out</button>
                     </div>
                 </div>
             </div>
