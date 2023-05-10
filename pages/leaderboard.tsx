@@ -19,7 +19,7 @@ export default function Leaderboard() {
                 <h2>Top Users</h2>
                 <ul>
                     {users?.map((user: User, index: number) => (
-                        <li key={user.id}>
+                        <li key={user.id} className="text-white">
                             {index === 0 && <span>🥇 </span>}
                             {index === 1 && <span>🥈 </span>}
                             {index === 2 && <span>🥉 </span>}
