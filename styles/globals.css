@@ -4,6 +4,7 @@
 
 body {
     @apply bg-zinc-900 h-full overflow-x-hidden;
+    overflow: hidden;
 }
 
 #__next {
@@ -13,3 +14,4 @@ body {
 html {
     @apply h-full;
 }
+

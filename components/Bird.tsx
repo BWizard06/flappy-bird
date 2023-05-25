@@ -4,35 +4,50 @@ import { useState, useEffect, useRef } from "react";
 export default function Bird() {
     const [open, setOpen] = useState(true);
     const [isLoaded, setIsLoaded] = useState(false);
-    const bird = useRef(null);
+    const bird = useRef<HTMLImageElement | null>(null);
 
     setTimeout(() => {
         setOpen(!open);
-    }, 200);
+    }, 400);
 
-    function handleImageLoad() {
-        setIsLoaded(true);
-    }
 
-    function jump() {
-        useEffect(() => {
-            document.addEventListener("keydown", detectKeyDown, true);
-        }, []);
-
-        const detectKeyDown = (e: any) => {
-            console.log(e.key);
-            bird.current.style.top = "10px";
-            if (e.key === " ") {
-                bird.current.style.top += "10px";
+    useEffect(() => { 
+        const detectKeyDown = (e: KeyboardEvent) => {
+            if (e.key === " "){
+                if(bird.current){
+                    const currentTop = parseInt(
+                        bird.current.style.top.replace("px", "") || "0"
+                    );
+                    bird.current.style.top = `${currentTop - 50}px`;
+                }
             }
-        };
-    }
+        }
 
-    jump();
+        document.addEventListener("keydown", detectKeyDown, true);
+
+        return () => {
+            document.removeEventListener("keydown", detectKeyDown, true);
+        }
+            
+    }, [])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (bird.current) {
+                const currentTop = parseInt(
+                    bird.current.style.top.replace("px", "") || "0"
+                );
+                bird.current.style.top = `${currentTop + 1}px`;
+            }
+        }, 10);
+        return () => clearInterval(interval);
+    }, []);
+    
+
 
     return (
         <>
-            <div className="flex justify-center h-full items-center">
+            <div className="absolute inset-0 flex justify-center items-center ">
                 {open ? (
                     <Image
                         ref={bird}
@@ -40,7 +55,7 @@ export default function Bird() {
                         width={120}
                         height={120}
                         alt="bird"
-                        onLoad={handleImageLoad}
+                        className="relative transition-all ease-out duration-200"
                     />
                 ) : (
                     <Image
@@ -49,7 +64,7 @@ export default function Bird() {
                         width={120}
                         height={120}
                         alt="bird"
-                        onLoad={handleImageLoad}
+                        className="relative transition-all ease-out duration-200"
                     />
                 )}
             </div>
