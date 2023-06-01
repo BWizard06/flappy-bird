@@ -1,10 +1,13 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { useGame } from "@/contexts/GameContexts";
 
 export default function Bird() {
     const [open, setOpen] = useState(true);
     const [isLoaded, setIsLoaded] = useState(false);
     const bird = useRef<HTMLImageElement | null>(null);
+    const { isGameOver, setIsGameOver } = useGame();
+    setIsGameOver(true);
 
     setTimeout(() => {
         setOpen(!open);

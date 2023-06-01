@@ -3,7 +3,7 @@ import Image from "next/image";
 const Pipes = () => {
   return (
     <>
-      <div className="static place-items-center">
+      <div className="static flex justify-center">
         <div className="absolute bottom-0">
           <Image
             src="/images/sprites/pipeup.png"
