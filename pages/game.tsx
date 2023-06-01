@@ -9,6 +9,7 @@ export default function Game(){
         <Bird />
         <Background />
         <Pipes />
+        <div>Hello</div>
       </>
     )
   }
