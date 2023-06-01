@@ -1,4 +1,4 @@
 {
     "css.lint.unknownAtRules": "ignore",
-    "editor.cursorBlinking": "expand"
+    "editor.cursorBlinking": "blink"
 }
