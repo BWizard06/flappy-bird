@@ -8,7 +8,11 @@ type GameContextType = {
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
-export const GameProvider: React.FC = ({ children }) => {
+interface GameProviderProps {
+  children: React.ReactNode;
+}
+
+export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
   return (

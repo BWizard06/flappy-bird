@@ -18,7 +18,7 @@ export default function Bird() {
                     const currentTop = parseInt(
                         bird.current.style.top.replace("px", "") || "0"
                     );
-                    bird.current.style.top = `${currentTop - 50}px`;
+                    bird.current.style.top = `${currentTop - 70}px`;
                 }
             }
         }
