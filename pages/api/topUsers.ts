@@ -26,7 +26,7 @@ export default async function handler(
     }
 
     try {
-        const topUsers = await getTopUsers(10);
+        const topUsers = await getTopUsers();
         res.status(200).json(topUsers);
     } catch (error) {
         console.log(error);

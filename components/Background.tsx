@@ -14,7 +14,7 @@ export default function Background() {
         />
       </div>
 
-      <Pipes />
+      {/* <Pipes /> */}
     </>
   );
 }

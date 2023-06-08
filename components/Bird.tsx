@@ -7,7 +7,7 @@ export default function Bird() {
     const [isLoaded, setIsLoaded] = useState(false);
     const bird = useRef<HTMLImageElement | null>(null);
     const { isGameOver, setIsGameOver } = useGame();
-    setIsGameOver(true);
+    setIsGameOver(false);
 
     setTimeout(() => {
         setOpen(!open);

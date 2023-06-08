@@ -8,7 +8,9 @@ function GameInner() {
         <>
             <Bird />
             <Background />
-            <Pipes />
+            <div className="w-full">
+                <Pipes />
+            </div>
             {isGameOver && (
                 <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
                     <div className="text-5xl text-white font-bold">
