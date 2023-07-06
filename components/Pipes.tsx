@@ -1,14 +1,17 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import useDispatch from "react-redux";
+import addPipe from "../store/pipeSlice";
 import React from "react";
 
 interface PipeProps {
     id?: number;
     upper_height?: number;
     lower_height?: number;
+    initialX?: number;
 }
 
-const Pipe: React.FC<PipeProps> = ({ id, upper_height, lower_height }) => {
+const Pipe: React.FC<PipeProps> = ({ id, upper_height, lower_height, }) => {
     const pipe = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -66,6 +69,17 @@ type PipeType = {
 
 const Pipes = () => {
     const [pipes, setPipes] = useState<PipeType[]>([{ id: 0 }]);
+    /* const dispatch = useDispatch();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          const randomUpperHeight = Math.floor(Math.random() * (80 - 30 + 1)) + 30;
+          const randomLowerHeight = Math.floor(Math.random() * (500 - 80 + 1)) + 80;
+          const id = Math.floor(Math.random() * 10000); // generate a unique id for each pipe
+          dispatch(addPipe({ id, upper_height: randomUpperHeight, lower_height: randomLowerHeight }));
+        }, 1500);
+        return () => clearInterval(interval);
+      }, [dispatch]); */ 
 
     useEffect(() => {
         const interval = setInterval(() => {
